@@ -1,0 +1,79 @@
+html,
+body {
+  height: 100%;
+}
+
+.form-signin {
+  max-width: 500px;
+  padding: 1rem;
+}
+
+.add-form {
+  max-width: 500px;
+  padding: 1rem;
+}
+
+.delete-content {
+	max-width: 500px;
+	padding: 1rem;
+}
+
+.r-view {
+	max-width: 500px;
+	padding: 1rem;
+}
+
+.form-signin .form-floating:focus-within {
+  z-index: 2;
+}
+
+.form-signin input[type="email"] {
+  margin-bottom: -1px;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+.form-signin input[type="password"] {
+  margin-bottom: 10px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+
+a:hover {
+	text-decoration: none !important;
+}
+
+input {
+	margin: 3px;
+}
+
+.glass {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 16px;
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.card.glass {
+  box-shadow: 3px 3px 15px #c9edcf;
+}
+
+.card.glass:hover {
+  box-shadow: 3px 3px 30px #c9edcf;
+}
+
+.bg-background {
+  background-image: url('../images/sin.png');
+  background-repeat: no-repeat; 
+  background-size: contain; 
+  background-position-y: center;
+}
+
+.table {
+  box-shadow: 3px 3px 15px #c9edcf;
+}
+
+.table:hover {
+  box-shadow: 3px 3px 30px #c9edcf;
+}
