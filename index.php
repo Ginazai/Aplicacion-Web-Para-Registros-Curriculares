@@ -84,8 +84,8 @@ href="https://code.jquery.com/ui/1.12.1/themes/ui-lightness/jquery-ui.css">
 
  		*/
 		if (isset($_SESSION['name']) && isset($_SESSION['user_id'])) {
-			echo('<h3 class="text-center">Welcome '.$_SESSION['name'].'!✌️</h3>');
- 			echo('<div class="text-center"><a class="btn btn-success btn-sm" href="add.php">Add New Entry</a></br>'.'or</br>'.'<a class="btn btn-danger btn-sm" href="logout.php">Log out</a></div>');
+			echo('<h3 class="text-center">Welcome '.$_SESSION['name'].'</h3>');
+ 			echo('<div class="text-center"><a class="btn glass-btn-success btn-sm" href="add.php">Add New Entry</a></br>'.'or</br>'.'<a class="btn glass-btn-danger btn-sm" href="logout.php">Log out</a></div>');
 	 		/*
 
 	 		>A continuacion tenemos el "error handling" de la pagina, donde colocamos los output de error en caso de fallar

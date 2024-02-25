@@ -170,8 +170,8 @@ unset($_SESSION['succes']);
 </div>
 
 <div class="card-footer" >
-	<div class="row ms-1 mb-1">
-			<input class="btn btn-primary py-2 col-5 btn-sm " type="submit" onclick="return doValidate();" name="log" value="Log In">
+	<div class="row me-0">
+			<input class="btn glass-btn-success py-2 col-5 btn-sm " type="submit" onclick="return doValidate();" name="log" value="Log In">
 		</div>
 </div>
 
