@@ -136,7 +136,7 @@ href="https://code.jquery.com/ui/1.12.1/themes/ui-lightness/jquery-ui.css">
 		<h1 class="h3">Resume Registry</h1>
 		<p>Please Login</p>
 	</div>
-<div class="card-body glass">
+<div class="card-body glass border rounded-0">
 		<div class="form-floating mb-1">
 		  <input type="text" class="form-control" id="e-mail" name="email" placeholder="name@example.com">
 		  <label for="e-mail">Email address</label>

@@ -85,7 +85,7 @@ href="https://code.jquery.com/ui/1.12.1/themes/ui-lightness/jquery-ui.css">
  		*/
 		if (isset($_SESSION['name']) && isset($_SESSION['user_id'])) {
 			echo('<h3 class="text-center">Welcome '.$_SESSION['name'].'</h3>');
- 			echo('<div class="text-center"><a class="btn glass-btn-success btn-sm" href="add.php">Add New Entry</a></br>'.'or</br>'.'<a class="btn glass-btn-danger btn-sm" href="logout.php">Log out</a></div>');
+ 			echo('<div class="text-center"><button class="btn glass-btn-success btn-sm " data-bs-toggle="modal" data-bs-target="#add-modal">Add New Entry</button></br>'.'or</br>'.'<a class="btn glass-btn-danger btn-sm" href="logout.php">Log out</a></div>');
 	 		/*
 
 	 		>A continuacion tenemos el "error handling" de la pagina, donde colocamos los output de error en caso de fallar
@@ -111,7 +111,7 @@ href="https://code.jquery.com/ui/1.12.1/themes/ui-lightness/jquery-ui.css">
  			if ($comprobation == false) {
  				echo('<div class="text-center">No rows found</div>');
  			}
-			if ($comprobation == true) {
+			elseif ($comprobation == true) {
 				echo("<table class='table table-hover rounded-3' style='margin-top: 15px; margin-left: auto; margin-right: auto;' class='text-center' border='1px'><thead><tr><th>Name</th><th>Headline</th><th>Action</th><tr></thead>");
 				while ( $row = $str_stmt->fetch(PDO::FETCH_ASSOC)) {
 					echo("<tr><td>");
@@ -141,3 +141,4 @@ href="https://code.jquery.com/ui/1.12.1/themes/ui-lightness/jquery-ui.css">
 <!-- Recursos -->
 </body>
 </html>
+<?php require_once "html/add_modal.php";?>

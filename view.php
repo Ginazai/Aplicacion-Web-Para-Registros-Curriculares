@@ -45,18 +45,19 @@ href="https://code.jquery.com/ui/1.12.1/themes/ui-lightness/jquery-ui.css">
 	crossorigin="anonymous"></script>
 
 </head>
-<body class="d-flex align-items-center">
+<body class="d-flex align-items-center bg-background">
 	<div class="container r-view">
-		<h1>Profile Information</h1>
-		<ul class="list-group list-group-flush shadow">
+		<h1 style="color:#5835c2;">Profile Information</h1>
+		<div class="card glass border rounded-0">
+		<ul class="list-group list-group-flush">
 		<?php 
 		//Data Validation
 		$sql = $pdo->prepare("SELECT * FROM profile WHERE profile_id = :pid");
 		$stmt = $sql->execute(array(
 			':pid' => $_GET['profile_id']));
 		$row = $sql->fetch(PDO::FETCH_ASSOC);
-		echo ("<li class='list-group-item'>First Name: ".$row['first_name']."</li>");
-		echo ("<li class='list-group-item'>Last Name: ".$row['last_name']."</li>");
+		echo ("<li class='list-group-item'>Name: ".$row['first_name']."</li>");
+		echo ("<li class='list-group-item'>Lastname: ".$row['last_name']."</li>");
 		echo ("<li class='list-group-item'>Email: ".$row['email']."</li>");
 		echo ("<li class='list-group-item'>Headline: ".$row['headline']."</li>");
 		echo ("<li class='list-group-item'>Summary: ".$row['summary']."</li>");
@@ -98,7 +99,7 @@ href="https://code.jquery.com/ui/1.12.1/themes/ui-lightness/jquery-ui.css">
 			echo("</ol>");
 		//Third
 		
-		echo ("</ul><a class='btn btn-primary mt-3 shadow-sm' href='index.php'>Done</a>");
+		echo ("</ul>");
 
 	/*	for ($i = 0; $i<=8; $i++) {
 			if (! isset($row_2['desc'.$i])) continue;
@@ -109,6 +110,8 @@ href="https://code.jquery.com/ui/1.12.1/themes/ui-lightness/jquery-ui.css">
 		}*/
 
 		?>
+		</div>
+		<a class='btn glass-btn-success mx-auto my-3' href='index.php'>Done</a>
 	</div>
 <!-- Resources -->
 <script

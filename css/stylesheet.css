@@ -137,3 +137,7 @@ Glass table
 .table:hover {
   box-shadow: 3px 3px 30px #c9edcf;
 }
+
+.list-group-item {
+  background-color: transparent; !important;
+}
