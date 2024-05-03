@@ -114,18 +114,19 @@ href="https://code.jquery.com/ui/1.12.1/themes/ui-lightness/jquery-ui.css">
 			elseif ($comprobation == true) {
 				echo("<table class='table table-hover rounded-3' style='margin-top: 15px; margin-left: auto; margin-right: auto;' class='text-center' border='1px'><thead><tr><th>Name</th><th>Headline</th><th>Action</th><tr></thead>");
 				while ( $row = $str_stmt->fetch(PDO::FETCH_ASSOC)) {
+					$id=htmlentities($row['profile_id']);
 					echo("<tr><td>");
 					echo("<a href='view.php?profile_id=".$row['profile_id']."'>".htmlentities($row['first_name'])." ".htmlentities($row['last_name'])."</a>");
 					echo("</td><td>");
 					echo(htmlentities($row['headline']));
 					echo("</td><td>");
-					echo("<a href='edit.php?profile_id=".urlencode(htmlentities($row['profile_id']))."'><span class='fas fa-edit' aria-hidden='true'></span></a>"."   "."<a href='delete.php?profile_id=".urldecode(htmlentities($row['profile_id']))."'><span class='fas fa-trash' aria-hidden='true'></a></td></tr>");
-				}
-				echo('</table>');
-			}
+					echo("<a data-bs-toggle='modal' data-bs-target='#edit-modal-$id'><span class='fas fa-edit' aria-hidden='true'></span></a>"."   "."<a href='delete.php?profile_id=".urldecode(htmlentities($row['profile_id']))."'><span class='fas fa-trash' aria-hidden='true'></a></td></tr>");
 		}
-		?>
-	</div>
+		echo('</table>');
+	}
+}
+?>
+</div>
 <!-- Recursos -->
 <script
 	src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
@@ -142,3 +143,4 @@ href="https://code.jquery.com/ui/1.12.1/themes/ui-lightness/jquery-ui.css">
 </body>
 </html>
 <?php require_once "html/add_modal.php";?>
+<?php require_once "html/edit_modal.php";?>

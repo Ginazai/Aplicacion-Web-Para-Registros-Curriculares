@@ -17,7 +17,7 @@
 					unset($_SESSION['succes']);
 				}
 				?>
-				<form id="form-add" name="form-add" action="" class="form-control border-0" style="background-color: transparent !important;">
+				<form id="form-add" name="form-add" action="" class="form-control border-0" role="form" method="post" style="background-color: transparent !important;">
 					<div class="row g-2">
 						<div class="col-md">
 							<div class="form-floating">
