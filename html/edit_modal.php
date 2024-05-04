@@ -69,13 +69,10 @@ if($profiles&&$get_data->rowCount()>0){
 	        <div class="col-sm-2">
 	          <label for="addEdu" class="form-label">Education:</label>
 
-	          <input class="form-control btn btn-success btn-sm" id="addEdu" type="submit" name="add_education" value="+">
+	          <button class="form-control btn glass-btn-success btn-sm" type="button" id="addEdu" name="add_education">+</button>
 	        </div>
 
 	        <div class="col-sm-12" id="edu_fields">
-						<script type="text/javascript" src="js/edu.js"></script>
-						<script type="text/javascript" src="js/ajax.js"></script>
-
 						<?php
 						$edu_query = "SELECT * FROM education WHERE profile_id = :pid";
 						$edu_stmt = $pdo->prepare($edu_query);
@@ -102,11 +99,10 @@ if($profiles&&$get_data->rowCount()>0){
 
 		    <div class="col-sm-2">
 		      <label for="addPost" class="form-label">Position:</label>
-		      <input class="form-control btn btn-success btn-sm" id="addPost" type="submit" name="addPost" value="+">
+		      <input class="form-control btn glass-btn-success btn-sm" id="addPost" type="button" name="addPost" value="+">
 		    </div>
 
 			  <div class="col-sm-12" id="position_fields">
-					<script type="text/javascript" src="js/position.js"></script>
 					<?php
 					$str_query = "SELECT * FROM position WHERE profile_id = :pid";
 					$stmt = $pdo->prepare($str_query);
@@ -120,8 +116,8 @@ if($profiles&&$get_data->rowCount()>0){
 						<label for='year{$i}' class='form-label'>Year:</label>
 						<input id='year{$i}' class='form-control col-6' maxlength='4' type='text' name='year{$i}' value='{$year}'>
 						<textarea class='form-control' name='desc{$i}' rows='8' cols='80'>{$desc}</textarea>
-						<button class='col-6 form-control position_remove btn btn-sm btn-danger mt-2' type='button'>
-						<span class='fas fa-trash'></span>
+						<button class='my-2 float-end remove-edu-field btn btn-sm btn glass-btn-danger' type='button'>
+						<span class='fas fa-trash'></span> Eliminar
 						</button>
 						</div>";
 						$i++;
@@ -131,8 +127,8 @@ if($profiles&&$get_data->rowCount()>0){
 		</form>
 </div>
 <div class="modal-footer float-left">
-  <button type="button" class="btn glass-btn-success" data-bs-dismiss="modal">Close</button>
-  <button type="submit" form="modal-edit-<?= $id ?>" class="btn glass-btn-danger">Edit</button>
+  <button type="button" class="btn glass-btn-danger" data-bs-dismiss="modal">Close</button>
+  <button type="submit" form="modal-edit-<?= $id ?>" class="btn glass-btn-success">Edit</button>
 </div>
 </div>
 </div>

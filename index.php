@@ -144,3 +144,6 @@ href="https://code.jquery.com/ui/1.12.1/themes/ui-lightness/jquery-ui.css">
 </html>
 <?php require_once "html/add_modal.php";?>
 <?php require_once "html/edit_modal.php";?>
+<script type="text/javascript" src="js/edu.js"></script>
+<script type="text/javascript" src="js/position.js"></script>
+<script type="text/javascript" src="js/ajax.js"></script>

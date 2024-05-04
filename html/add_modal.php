@@ -50,27 +50,24 @@
 
 	        <div class="col-sm-2">
 	          <label for="addEdu" class="form-label">Education</label>
-	          <input class="form-control btn btn-success btn-sm" id="addEdu" type="submit" name="add_education" value="+">
+	          <input class="form-control btn glass-btn-success btn-sm" id="addEdu" type="button" name="add_education" value="+">
 	        </div>
 
 	        <div class="col-sm-12" id="edu_fields">
-						<script type="text/javascript" src="js/edu.js"></script>
-						<script type="text/javascript" src="js/ajax.js"></script>
 					</div>
 
 	        <div class="col-sm-2">
 	          <label for="addPost" class="form-label">Position</label>
-	          <input class="form-control btn btn-success btn-sm" id="addPost" type="submit" name="addPost" value="+">
+	          <input class="form-control btn glass-btn-success btn-sm" id="addPost" type="submit" name="addPost" value="+">
 	        </div>
 
 	        <div class="col-sm-12" id="position_fields">
-						<script type="text/javascript" src="js/position.js"></script>
 					</div>
 				</form>
       </div>
       <div class="modal-footer float-left">
-        <button type="button" class="btn glass-btn-success" data-bs-dismiss="modal">Close</button>
-        <button type="submit" class="btn glass-btn-danger">Add</button>
+        <button type="button" class="btn glass-btn-danger" data-bs-dismiss="modal">Close</button>
+        <button type="submit" class="btn glass-btn-success">Add</button>
       </div>
     </div>
   </div>
