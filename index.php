@@ -20,8 +20,9 @@ insertando directamente el query; sin embargo, con el fin de estructurar mejor
 el codigo, decidi separarlo
 
 */
-$str_stmt = $pdo->query("SELECT * FROM profile");
-$comprobation = $str_stmt->fetch(PDO::FETCH_ASSOC);
+$str_stmt = $pdo->prepare("SELECT * FROM profile");
+$str_stmt->execute();
+$comprobation = $str_stmt->fetchAll();
 ?>
 <!-- Inicio del "view" -->
 <!DOCTYPE html>
@@ -50,6 +51,7 @@ href="https://code.jquery.com/ui/1.12.1/themes/ui-lightness/jquery-ui.css">
 <script defer src="https://use.fontawesome.com/releases/v5.15.4/js/all.js"
 	integrity="sha384-rOA1PnstxnOBLzCLMcre8ybwbTmemjzdNlILg8O7z1lUkLXozs4DHonlDtnE7fpc"
 	crossorigin="anonymous"></script>
+<script type="application/javascript">var edit_fields_id=[];</script>
 </head>
 <!-- Recursos -->
 <body class="bg-background">
@@ -108,22 +110,27 @@ href="https://code.jquery.com/ui/1.12.1/themes/ui-lightness/jquery-ui.css">
 			tabla
 
  			*/
- 			if ($comprobation == false) {
- 				echo('<div class="text-center">No rows found</div>');
+ 			if ($comprobation&&$str_stmt->rowCount()>0) {
+ 				echo("<table class='table table-hover rounded-3' style='margin-top: 15px; margin-left: auto; margin-right: auto;' class='text-center' border='1px'><thead><tr><th>Name</th><th>Headline</th><th>Action</th><tr></thead>");
+ 				foreach($comprobation as $data){
+					$id=htmlentities($data['profile_id']);
+						echo("<tr><td>");
+						echo("<a href='view.php?profile_id=".$data['profile_id']."'>".htmlentities($data['first_name'])." ".htmlentities($data['last_name'])."</a>");
+						echo("</td><td>");
+						echo(htmlentities($data['headline']));
+						echo("</td><td>");
+						echo("<a data-bs-toggle='modal' data-bs-target='#edit-modal-$id'><span class='fas fa-edit' aria-hidden='true'></span></a>"."   "."<a href='delete.php?profile_id=".urldecode(htmlentities($data['profile_id']))."'><span class='fas fa-trash' aria-hidden='true'></a></td></tr>");
+						echo "
+						<script type='application/javascript'>
+							edit_fields_id.push($id);
+						</script>
+						";
+				}
+				echo('</table>');
  			}
-			elseif ($comprobation == true) {
-				echo("<table class='table table-hover rounded-3' style='margin-top: 15px; margin-left: auto; margin-right: auto;' class='text-center' border='1px'><thead><tr><th>Name</th><th>Headline</th><th>Action</th><tr></thead>");
-				while ( $row = $str_stmt->fetch(PDO::FETCH_ASSOC)) {
-					$id=htmlentities($row['profile_id']);
-					echo("<tr><td>");
-					echo("<a href='view.php?profile_id=".$row['profile_id']."'>".htmlentities($row['first_name'])." ".htmlentities($row['last_name'])."</a>");
-					echo("</td><td>");
-					echo(htmlentities($row['headline']));
-					echo("</td><td>");
-					echo("<a data-bs-toggle='modal' data-bs-target='#edit-modal-$id'><span class='fas fa-edit' aria-hidden='true'></span></a>"."   "."<a href='delete.php?profile_id=".urldecode(htmlentities($row['profile_id']))."'><span class='fas fa-trash' aria-hidden='true'></a></td></tr>");
+			else {
+				echo('<div class="text-center">No rows found</div>');
 		}
-		echo('</table>');
-	}
 }
 ?>
 </div>
@@ -140,10 +147,10 @@ href="https://code.jquery.com/ui/1.12.1/themes/ui-lightness/jquery-ui.css">
 	type="text/css"
 	href="css/stylesheet.css">
 <!-- Recursos -->
-</body>
-</html>
 <?php require_once "html/add_modal.php";?>
 <?php require_once "html/edit_modal.php";?>
 <script type="text/javascript" src="js/edu.js"></script>
 <script type="text/javascript" src="js/position.js"></script>
 <script type="text/javascript" src="js/ajax.js"></script>
+</body>
+</html>

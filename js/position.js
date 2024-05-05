@@ -1,16 +1,16 @@
 $(document).ready(function () {
 	i=0;
-	$('#addPost').click(function (event) {
-		event.preventDefault();
-		$('#position_fields').append('\
+	function createPosition(parent_elem) {
+		console.log("pressed add position");
+		$(parent_elem).append('\
 			<div class="position_field row g-2">\
-			<div class="col-md">\
+			<div class="col-12">\
 				<div class="form-floating">\
 					<input id="year'+ i +'" class="form-control mx-0" maxlength="4" type="number" name="year'+ i +'" placeholder="Year">\
 					<label for="year'+ i +'">Year</label>\
 				</div>\
 			</div>\
-			<div class="col-md">\
+			<div class="col-12">\
 				<div class="form-floating">\
 					<textarea id="desc'+ i +'" class="form-control" name="desc' + i + '" placeholder="Description"></textarea>\
 					<label for="desc'+ i +'">Description</label>\
@@ -23,8 +23,18 @@ $(document).ready(function () {
 			</div>\
 		</div>');
 		i+=1;
+	}
+	const map_positions = edit_fields_id.map((id) => {
+		console.log("created #editPost_"+id);
+		$("#editPost_"+id).on("click", function() {createPosition("#position_fields_edit_"+id);});
+		$("#position_fields_edit_"+id).on("click", ".position_remove", function(e) {
+			e.preventDefault();
+			$(this).parent().parent().remove();
+		});
 	});
-	$("#position_fields").on("click", ".position_remove", function() {
+	$("#addPost").on("click", function() {createPosition("#position_fields");});
+	$("#position_fields").on("click", ".position_remove", function(e) {
+		e.preventDefault();
 		$(this).parent().parent().remove();
 	});
 });

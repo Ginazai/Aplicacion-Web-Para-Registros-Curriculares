@@ -9,6 +9,7 @@ $profiles = $get_data->fetchAll();
 if($profiles&&$get_data->rowCount()>0){
 	foreach($profiles as $profile){
 		$id=$profile['profile_id'];
+
 		$name=$profile['first_name'];
 		$lastname=$profile['last_name'];
 		$email=$profile['email'];
@@ -16,7 +17,6 @@ if($profiles&&$get_data->rowCount()>0){
 		$summary=$profile['summary'];
 ?>
 <!-- Edit Modal -->
-<script type="application/javascript">var edit_field = [];</script>
 <div class="modal glass fade rounded-0" id="edit-modal-<?= $id ?>" tabindex="-1" aria-labelledby="edit-modal-label-<?= $id ?>" aria-hidden="true">
 	  <div class="modal-dialog">
 	    <div class="modal-content glass">
@@ -68,12 +68,12 @@ if($profiles&&$get_data->rowCount()>0){
 	        </div>
 
 	        <div class="col-sm-2">
-	          <label for="addEdu" class="form-label">Education:</label>
+	          <label for="addEdu" class="form-label">Education</label>
 
-	          <button class="form-control btn glass-btn-success btn-sm" type="button" id="editEdu" name="add_education">+</button>
+	          <button class="form-control btn glass-btn-success btn-sm" type="button" id="editEdu_<?= $id ?>" name="add_education">+</button>
 	        </div>
 
-	        <div class="col-sm-12" id="edu_fields_edit">
+	        <div class="col-sm-12" id="edu_fields_edit_<?= $id ?>">
 						<?php
 						$edu_query = "SELECT * FROM education WHERE profile_id = :pid";
 						$edu_stmt = $pdo->prepare($edu_query);
@@ -91,7 +91,24 @@ if($profiles&&$get_data->rowCount()>0){
 							));
 							while ($inst_row = $inst_stmt->fetch(PDO::FETCH_ASSOC)) {
 								$inst_name = $inst_row['name'];
-								echo "<div class='edu_field row'><div class='col-6'><label for='edu_year{$j}' class='form-label'>Year:</label><input class='form-control' id='edu_year{$j}' maxlength='4' type='text' name='edu_year{$j}' value='{$inst_year}'></div><div class='col-6'><label for='edu_school{$j}' class='form-label'>Institution:</label><input class='school form-control' type='text' name='edu_school{$j}' rows='1' cols='60' value='{$inst_name}'></div><div class='col-12'><button class='edu_rm form-control btn btn-sm btn-danger mt-3' type='button'><span class='fas fa-trash'></span></button></div></div>";
+								echo "
+								<div class='edu_field row'>
+									<div class='row g-2'>
+										<div class='col-md'>
+											<input class='form-floating' id='edu_year{$j}' maxlength='4' type='text' name='edu_year{$j}' value='{$inst_year}'>
+											<label for='edu_year{$j}' class='form-label'>Year</label>
+										</div>
+										<div class='col-md'>
+											<input class='school form-floating' type='text' name='edu_school{$j}' rows='1' cols='60' value='{$inst_name}'>
+											<label for='edu_school{$j}' class='form-label'>Institution:</label>
+										</div>
+									</div>
+									<div class='col-12' width='100%'>
+										<button class='my-2 float-end remove-edu-field btn btn-sm btn glass-btn-danger' type='button'>
+											<span class='fas fa-trash'></span> Eliminar
+										</button>
+									</div>
+								</div>";
 								$j++;
 							}
 						}
@@ -99,11 +116,11 @@ if($profiles&&$get_data->rowCount()>0){
 					</div>
 
 		    <div class="col-sm-2">
-		      <label for="addPost" class="form-label">Position:</label>
-		      <input class="form-control btn glass-btn-success btn-sm" id="addPost" type="button" name="addPost" value="+">
+		      <label for="addPost" class="form-label">Position</label>
+		      <input class="form-control btn glass-btn-success btn-sm" id="editPost_<?= $id ?>" type="button" name="addPost" value="+">
 		    </div>
 
-			  <div class="col-sm-12" id="position_fields">
+			  <div class="col-sm-12" id="position_fields_edit_<?= $id ?>">
 					<?php
 					$str_query = "SELECT * FROM position WHERE profile_id = :pid";
 					$stmt = $pdo->prepare($str_query);
@@ -113,20 +130,22 @@ if($profiles&&$get_data->rowCount()>0){
 					while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
 						$year = $row['year'];
 						$desc = $row['description'];
-						?>
-						<div class='position_field_edit_<?= $id ?>'>
-							<label for='year{$i}' class='form-label'>Year:</label>
-							<input id='year{$i}' class='form-control col-6' maxlength='4' type='text' name='year{$i}' value='{$year}'>
-							<textarea class='form-control' name='desc{$i}' rows='8' cols='80'>{$desc}</textarea>
-							<button class='my-2 float-end remove-edu-field btn btn-sm btn glass-btn-danger' type='button'>
-							<span class='fas fa-trash'></span> Eliminar
-							</button>
-						</div>
-						<script type="application/javascript">
-							var temp_field = "position_field_edit_<?= $id ?>";
-							edit_fields.push(temp_field);
-						</script>
-						<?php
+						echo "
+						<div class='position_field row g-2'>
+							<div class='form-floating'>
+								<input id='year{$i}'  class='form-control mx-0' maxlength='4' type='number' name='year{$i}' placeholder='Year' value='{$year}'>
+								<label for='year{$i}' class='form-label'>Year</label>
+							</div>
+							<div class='form-floating'>
+								<textarea class='form-control' name='desc{$i}' placeholder='Description'>{$desc}</textarea>
+								<label for='desc{$i}' class='form-label'>Description</label>
+							</div>
+							<div class='col-12' width='100%'>
+								<button class='position_remove my-2 float-end btn btn-sm btn glass-btn-danger' type='button'>
+								<span class='fas fa-trash'></span> Eliminar
+								</button>
+							</div>
+						</div>";
 						$i++;
 					}
 					?>

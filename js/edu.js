@@ -26,12 +26,17 @@ $(document).ready(function() {
 		</div>');
 		j+=1;
 	}
-	$("#editEdu").on("click",function(){createEdu("#edu_fields_edit");});
-	$("#addEdu").on("click",function(){createEdu("#edu_fields");});
-
+	const edu_fields = edit_fields_id.map((id) => {
+		$("#editEdu_" + id).on("click",function(){createEdu("#edu_fields_edit_"+id);});
+		$("#edu_fields_edit_"+id).on("click", ".remove-edu-field", function(e) {
+			e.preventDefault();
+			$(this).parent().parent().remove();
+		});
+	});
 	$('.school').autocomplete({
 		source: "school.php" 
 	});
+	$("#addEdu").on("click",function(){createEdu("#edu_fields");});
 	$("#edu_fields").on("click", ".remove-edu-field", function(e) {
 		e.preventDefault();
 		$(this).parent().parent().remove();

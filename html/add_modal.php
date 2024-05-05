@@ -58,7 +58,7 @@
 
 	        <div class="col-sm-2">
 	          <label for="addPost" class="form-label">Position</label>
-	          <input class="form-control btn glass-btn-success btn-sm" id="addPost" type="submit" name="addPost" value="+">
+	          <input class="form-control btn glass-btn-success btn-sm" id="addPost" type="button" name="addPost" value="+">
 	        </div>
 
 	        <div class="col-sm-12" id="position_fields">
