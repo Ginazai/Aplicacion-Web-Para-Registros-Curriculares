@@ -1,5 +1,5 @@
 <!-- Add Modal -->
-<div class="modal glass fade" id="add-modal" data-bs-keyboard="false" tabindex="-1" aria-labelledby="add-modal-label" aria-hidden="true">
+<div class="modal glass fade rounded-0" id="add-modal" data-bs-keyboard="false" tabindex="-1" aria-labelledby="add-modal-label" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content glass">
       <div class="modal-header">
@@ -17,7 +17,7 @@
 					unset($_SESSION['succes']);
 				}
 				?>
-				<form id="form-add" name="form-add" action="" class="form-control border-0" role="form" method="post" style="background-color: transparent !important;">
+				<form id="form-add" name="form-add" action="" class="form-floating border-0" role="form" method="post" style="background-color: transparent !important;">
 					<div class="row g-2">
 						<div class="col-md">
 							<div class="form-floating">

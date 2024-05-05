@@ -1,32 +1,30 @@
 $(document).ready(function () {
+	i=0;
 	$('#addPost').click(function (event) {
 		event.preventDefault();
-		var i = $(".position_field").length;
-		console.log("position field lenght: " + i);
-		if (i >= 9) {
-			alert("Maximum entries exceeded");
-		} else {
-			console.log($('#year' + i));
-			for(x = 0; x <= i.length; x++) {
-				if($('"#year' + i + '"') != undefined){
-					console.log("year exists");
-				} else {
-					$('#position_fields').append('\
-					<div class="position_field">\
-						<label for="year'+ i +'" class="form-label">Year:</label>\
-						<input id="year'+ i +'" class="form-control col-6" maxlength="4" type="text" name="year'+ i +'">\
-						<textarea class="form-control" name="desc' + i + '" rows="8" cols="80"></textarea>\
-						<input class="col-6 form-control position_remove btn btn-sm btn-danger mt-2" type="button">\
-							<span class="fas fa-trash"></span>\
-						</input>\
-					</div>');
-				}
-			}
-		}
+		$('#position_fields').append('\
+			<div class="position_field row g-2">\
+			<div class="col-md">\
+				<div class="form-floating">\
+					<input id="year'+ i +'" class="form-control mx-0" maxlength="4" type="number" name="year'+ i +'" placeholder="Year">\
+					<label for="year'+ i +'">Year</label>\
+				</div>\
+			</div>\
+			<div class="col-md">\
+				<div class="form-floating">\
+					<textarea id="desc'+ i +'" class="form-control" name="desc' + i + '" placeholder="Description"></textarea>\
+					<label for="desc'+ i +'">Description</label>\
+				</div>\
+			</div>\
+			<div class="col-12" width="100%">\
+				<button class="position_remove my-2 float-end btn btn-sm btn glass-btn-danger" type="button">\
+					<span class="fas fa-trash"></span> Eliminar\
+				</button>\
+			</div>\
+		</div>');
+		i+=1;
 	});
-	$(".position_remove").click(function() {
-		var i = $(".position_field").length;
-		console.log("removed clicked");
-		$(this).parent().remove();
+	$("#position_fields").on("click", ".position_remove", function() {
+		$(this).parent().parent().remove();
 	});
 });
