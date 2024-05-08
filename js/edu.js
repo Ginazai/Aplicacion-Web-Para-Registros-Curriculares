@@ -1,7 +1,6 @@
 $(document).ready(function() {
 	j=0;
 	function createEduEdit(parent_div) {
-		console.log("pressed add edu");
 		$(parent_div).append('\
 		<div class="edu_field row">\
 			<div class="row g-2">\
@@ -24,10 +23,12 @@ $(document).ready(function() {
 				</button>\
 			</div>\
 		</div>');
+		$('.school').autocomplete({
+			source: "php/school.php" 
+		}); 
 		j+=1;
 	}
 	function createEduAdd(parent_div) {
-		console.log("pressed add edu");
 		$(parent_div).append('\
 		<div class="edu_field row">\
 			<div class="row g-2">\
@@ -50,6 +51,9 @@ $(document).ready(function() {
 				</button>\
 			</div>\
 		</div>');
+		$('.school').autocomplete({
+			source: "php/school.php" 
+		}); 
 		j+=1;
 	}
 	const edu_fields = edit_fields_id.map((id) => {
