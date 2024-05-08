@@ -1,5 +1,5 @@
 <?php
-require_once "pdo.php";
+require_once "php/pdo.php";
 
 $get_data = $pdo->prepare("SELECT * FROM profile"); 
 $get_data->execute();
@@ -35,7 +35,7 @@ if($profiles&&$get_data->rowCount()>0){
 					unset($_SESSION['succes']);
 				}
 				?>
-			<form class="form-control border-0" id="modal-edit-<?= $id ?>" name="modal-edit-<?= $id ?>" action="" role="form" method="post"  style="background-color:transparent;">
+			<form class="form-control border-0" id="modal-edit-<?= $id ?>" name="modal-edit-<?= $id ?>" action="php/edit_entry.php?profile_id=<?= $id ?>" role="form" method="post"  style="background-color:transparent;">
 
 	      <div class="row g-2">
 	      	<div class="col-md">
@@ -67,9 +67,8 @@ if($profiles&&$get_data->rowCount()>0){
 	          <textarea id="summary" class="form-control" name="summary" rows="8" cols="80"><?= $summary ?></textarea>
 	        </div>
 
-	        <div class="col-sm-2">
-	          <label for="addEdu" class="form-label">Education</label>
-
+	        <div class="col-sm-2 my-2">
+	          <label for="editEdu_<?= $id ?>" class="form-label">Education</label>
 	          <button class="form-control btn glass-btn-success btn-sm" type="button" id="editEdu_<?= $id ?>" name="add_education">+</button>
 	        </div>
 
@@ -94,13 +93,13 @@ if($profiles&&$get_data->rowCount()>0){
 								echo "
 								<div class='edu_field row'>
 									<div class='row g-2'>
-										<div class='col-md'>
-											<input class='form-floating' id='edu_year{$j}' maxlength='4' type='text' name='edu_year{$j}' value='{$inst_year}'>
+										<div class='col-md form-floating'>
+											<input class='form-control' id='edu_year{$j}' maxlength='4' type='text' name='edu_year{$j}' value='{$inst_year}' placeholder='Year'>
 											<label for='edu_year{$j}' class='form-label'>Year</label>
 										</div>
-										<div class='col-md'>
-											<input class='school form-floating' type='text' name='edu_school{$j}' rows='1' cols='60' value='{$inst_name}'>
-											<label for='edu_school{$j}' class='form-label'>Institution:</label>
+										<div class='col-md form-floating'>
+											<input class='school form-control' type='text' name='edu_school{$j}' rows='1' cols='60' value='{$inst_name}' placeholder='Institution'>
+											<label for='edu_school{$j}' class='form-label'>Institution</label>
 										</div>
 									</div>
 									<div class='col-12' width='100%'>
@@ -115,8 +114,8 @@ if($profiles&&$get_data->rowCount()>0){
 						?>
 					</div>
 
-		    <div class="col-sm-2">
-		      <label for="addPost" class="form-label">Position</label>
+		    <div class="col-sm-2 my-2">
+		      <label for="editPost_<?= $id ?>" class="form-label">Position</label>
 		      <input class="form-control btn glass-btn-success btn-sm" id="editPost_<?= $id ?>" type="button" name="addPost" value="+">
 		    </div>
 
@@ -132,7 +131,7 @@ if($profiles&&$get_data->rowCount()>0){
 						$desc = $row['description'];
 						echo "
 						<div class='position_field row g-2'>
-							<div class='form-floating'>
+							<div class='form-floating mt-3'>
 								<input id='year{$i}'  class='form-control mx-0' maxlength='4' type='number' name='year{$i}' placeholder='Year' value='{$year}'>
 								<label for='year{$i}' class='form-label'>Year</label>
 							</div>

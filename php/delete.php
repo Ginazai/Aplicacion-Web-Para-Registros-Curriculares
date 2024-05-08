@@ -25,7 +25,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['name']) && isset($_GET['prof
 	$stmt->execute(array(
 		':id' => $_GET['profile_id']));
 	$_SESSION['success'] = "Record deleted";
-	header('Location: index.php');
+	header('Location: ../index.php');
 	return;
 }
 
@@ -36,12 +36,12 @@ $stmt->execute(array(':pid' => $_GET['profile_id']));
 $row = $stmt->fetch(PDO::FETCH_ASSOC);
 if ($row === false) {
 	$_SESSION['error'] = "Bad id for selected element";
-	header('Location: index.php');
+	header('Location: ../index.php');
 	return;
 }
 //Cancel
 if (isset($_POST['cancel'])) {
-	header("Location: index.php");
+	header("Location: ../index.php");
 	return;
 }
 ?>

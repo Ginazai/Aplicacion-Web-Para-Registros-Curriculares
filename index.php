@@ -12,7 +12,7 @@ proviene del archivo "pdo.php" con el fin de conectarse a la base de datos
 
 */
 session_start();
-require_once "pdo.php";
+require_once "php/pdo.php";
 /*
 
 >Creamos una variable para almacenar el query. Este paso podria ser omitido
@@ -119,7 +119,7 @@ href="https://code.jquery.com/ui/1.12.1/themes/ui-lightness/jquery-ui.css">
 						echo("</td><td>");
 						echo(htmlentities($data['headline']));
 						echo("</td><td>");
-						echo("<a data-bs-toggle='modal' data-bs-target='#edit-modal-$id'><span class='fas fa-edit' aria-hidden='true'></span></a>"."   "."<a href='delete.php?profile_id=".urldecode(htmlentities($data['profile_id']))."'><span class='fas fa-trash' aria-hidden='true'></a></td></tr>");
+						echo("<a data-bs-toggle='modal' data-bs-target='#edit-modal-$id'><span class='fas fa-edit' aria-hidden='true'></span></a>"."   "."<a href='php/delete.php?profile_id=".urldecode(htmlentities($data['profile_id']))."'><span class='fas fa-trash' aria-hidden='true'></a></td></tr>");
 						echo "
 						<script type='application/javascript'>
 							edit_fields_id.push($id);

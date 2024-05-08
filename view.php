@@ -1,6 +1,6 @@
 <?php 
 session_start();
-require_once "pdo.php";
+require_once "php/pdo.php";
 //Protection
 if (! isset($_SESSION['user_id']) && ! isset($_SESSION['name'])) {
 	die('<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><h1 class="container" style="color: red; text-align: center;">UNAUTHORIZED</h1>');

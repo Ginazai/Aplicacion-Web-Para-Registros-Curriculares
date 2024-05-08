@@ -1,15 +1,15 @@
 $(document).ready(function () {
 	var name = $('.school').val();
+	console.log(name);
 	$.ajax({
-		url: "school.php",
+		url: "php/school.php",
 		type: "post",
 		data: {term:name},
 		dataType: 'json',
-		succes: function() {
+		success: function() {
 			$('.school').autocomplete({
-			source: "school.php" 
+			source: data
 		}); 
 		}
-
 	});
 });

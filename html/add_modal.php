@@ -7,22 +7,12 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body glass border rounded-0">
-        <?php 
-				if (isset($_SESSION['error'])) {
-					echo('<div style="color: red;" class="text-center">'.$_SESSION['error'].'</div>');
-					unset($_SESSION['error']);
-				}
-				if (isset($_SESSION['succes'])) {
-					echo('<div style="color: green;" class="text-center">'.$_SESSION['succes'].'</div>');
-					unset($_SESSION['succes']);
-				}
-				?>
-				<form id="form-add" name="form-add" action="" class="form-floating border-0" role="form" method="post" style="background-color: transparent !important;">
+				<form id="form-add" name="form-add" action="php/add_entry.php" class="form-floating border-0" role="form" method="post" style="background-color: transparent !important;">
 					<div class="row g-2">
 						<div class="col-md">
 							<div class="form-floating">
-			          <input id="firstName" type="text" class="form-control" name="first_name" placeholder="Name">
-			          <label for="firstName" class="form-label">Name</label>
+			          <input id="fname" type="text" class="form-control" name="fname" placeholder="Name">
+			          <label for="fname" class="form-label">Name</label>
 			        </div>
 			      </div>
 			      <div class="col-md">
@@ -48,7 +38,7 @@
 	           <label for="summary" class="form-label">Summary</label>
 	        </div>
 
-	        <div class="col-sm-2">
+	        <div class="col-sm-2 my-2">
 	          <label for="addEdu" class="form-label">Education</label>
 	          <input class="form-control btn glass-btn-success btn-sm" id="addEdu" type="button" name="add_education" value="+">
 	        </div>
@@ -56,7 +46,7 @@
 	        <div class="col-sm-12" id="edu_fields">
 					</div>
 
-	        <div class="col-sm-2">
+	        <div class="col-sm-2 my-2">
 	          <label for="addPost" class="form-label">Position</label>
 	          <input class="form-control btn glass-btn-success btn-sm" id="addPost" type="button" name="addPost" value="+">
 	        </div>
@@ -67,7 +57,7 @@
       </div>
       <div class="modal-footer float-left">
         <button type="button" class="btn glass-btn-danger" data-bs-dismiss="modal">Close</button>
-        <button type="submit" class="btn glass-btn-success">Add</button>
+        <button type="submit" class="btn glass-btn-success" form="form-add">Add</button>
       </div>
     </div>
   </div>

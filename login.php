@@ -12,7 +12,7 @@ proviene del archivo "pdo.php" con el fin de conectarse a la base de datos
 
 */
 session_start();
-require_once "pdo.php";
+require_once "php/pdo.php";
 /*
 
 >Verificacion de campos: se verifica el input del form del usuario, el email y 
