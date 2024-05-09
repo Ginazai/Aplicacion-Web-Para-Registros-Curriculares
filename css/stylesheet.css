@@ -114,11 +114,11 @@ Glass table
   border: 1px solid rgba(255, 255, 255, 0.3) !important;
 }
 
-.card.glass {
+.glass.form-login {
   box-shadow: 3px 3px 15px #c9edcf;
 }
 
-.card.glass:hover {
+.glass.form-login:hover {
   box-shadow: 3px 3px 30px #c9edcf;
 }
 

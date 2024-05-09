@@ -1,7 +1,7 @@
 $(document).ready(function () {
 	i=0;
 	function createPositionEdit(parent_elem) {
-		console.log("pressed add position");
+		if($(parent_elem).children().length>=9){alert("Maximun amount of position rows reached");}
 		$(parent_elem).append('\
 			<div class="position_field row g-2">\
 			<div class="col-12 mt-3">\
@@ -24,8 +24,8 @@ $(document).ready(function () {
 		</div>');
 		i+=1;
 	}
-		function createPositionAdd(parent_elem) {
-		console.log("pressed add position");
+	function createPositionAdd(parent_elem) {
+		if($(parent_elem).children().length>=9){alert("Maximun amount of position rows reached");}
 		$(parent_elem).append('\
 			<div class="position_field row g-2">\
 			<div class="col-12 mt-3">\

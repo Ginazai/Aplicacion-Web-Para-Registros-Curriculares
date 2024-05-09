@@ -1,5 +1,5 @@
 <!-- Add Modal -->
-<div class="modal glass fade rounded-0" id="add-modal" data-bs-keyboard="false" tabindex="-1" aria-labelledby="add-modal-label" aria-hidden="true">
+<div class="modal fade rounded-0" id="add-modal" tabindex="-1" aria-labelledby="add-modal-label" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content glass">
       <div class="modal-header">

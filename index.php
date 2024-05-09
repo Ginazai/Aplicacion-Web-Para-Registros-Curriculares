@@ -23,6 +23,18 @@ el codigo, decidi separarlo
 $str_stmt = $pdo->prepare("SELECT * FROM profile");
 $str_stmt->execute();
 $comprobation = $str_stmt->fetchAll();
+
+$get_positions = $pdo->prepare("SELECT * FROM position");
+$get_positions->execute();
+while($row=$get_positions->fetch(PDO::FETCH_ASSOC)){$position_data[]=$row;}
+$position_data = json_encode($position_data, JSON_PRETTY_PRINT);
+
+$get_edu = $pdo->prepare("SELECT * FROM education
+							JOIN institution
+							ON education.institution_id = institution.institution_id");
+$get_edu->execute();
+while($row=$get_edu->fetch(PDO::FETCH_ASSOC)){$edu_data[]=$row;}
+$edu_data = json_encode($edu_data, JSON_PRETTY_PRINT);
 ?>
 <!-- Inicio del "view" -->
 <!DOCTYPE html>
@@ -59,6 +71,7 @@ href="https://code.jquery.com/ui/1.12.1/themes/ui-lightness/jquery-ui.css">
 	crossorigin="anonymous"></script>
 
 <script type="application/javascript">var edit_fields_id=[];</script>
+<?= "<script type='application/javascript'>var position_data = $position_data; var edu_data = $edu_data;</script>" ?>
 </head>
 <!-- Recursos -->
 <body class="bg-background">
@@ -94,7 +107,13 @@ href="https://code.jquery.com/ui/1.12.1/themes/ui-lightness/jquery-ui.css">
  		*/
 		if (isset($_SESSION['name']) && isset($_SESSION['user_id'])) {
 			echo('<h3 class="text-center">Welcome '.$_SESSION['name'].'</h3>');
- 			echo('<div class="text-center"><button class="btn glass-btn-success btn-sm " data-bs-toggle="modal" data-bs-target="#add-modal">Add New Entry</button></br>'.'or</br>'.'<a class="btn glass-btn-danger btn-sm" href="logout.php">Log out</a></div>');
+ 			echo('<div class="text-center">
+ 					<button class="btn glass-btn-success btn-sm " data-bs-toggle="modal" data-bs-target="#add-modal">Add New Entry</button>
+ 					</br>
+ 					or
+ 					</br>
+ 					<a class="btn glass-btn-danger btn-sm" href="php/logout.php">Log out</a>
+ 				</div>');
 	 		/*
 
 	 		>A continuacion tenemos el "error handling" de la pagina, donde colocamos los output de error en caso de fallar
@@ -118,20 +137,40 @@ href="https://code.jquery.com/ui/1.12.1/themes/ui-lightness/jquery-ui.css">
 
  			*/
  			if ($comprobation&&$str_stmt->rowCount()>0) {
- 				echo("<table class='table table-hover rounded-3' style='margin-top: 15px; margin-left: auto; margin-right: auto;' class='text-center' border='1px'><thead><tr><th>Name</th><th>Headline</th><th>Action</th><tr></thead>");
+ 				echo("
+ 					<table class='table table-hover rounded-3 my-3 text-center'>
+ 						<thead>
+ 							<tr>
+ 								<th>Name</th>
+ 								<th>Headline</th>
+ 								<th>Actions</th>
+ 							<tr>
+ 						</thead>");
  				foreach($comprobation as $data){
 					$id=htmlentities($data['profile_id']);
-						echo("<tr><td>");
-						echo("<a href='view.php?profile_id=".$data['profile_id']."'>".htmlentities($data['first_name'])." ".htmlentities($data['last_name'])."</a>");
-						echo("</td><td>");
-						echo(htmlentities($data['headline']));
-						echo("</td><td>");
-						echo("<a data-bs-toggle='modal' data-bs-target='#edit-modal-$id'><span class='fas fa-edit' aria-hidden='true'></span></a>"."   "."<a href='php/delete.php?profile_id=".urldecode(htmlentities($data['profile_id']))."'><span class='fas fa-trash' aria-hidden='true'></a></td></tr>");
-						echo "
-						<script type='application/javascript'>
-							edit_fields_id.push($id);
-						</script>
-						";
+					$name=htmlentities($data['first_name']);
+					$lastname=htmlentities($data['last_name']);
+					echo("<tr><td>");
+					echo("<a href='#' data-bs-toggle='modal' data-bs-target='#view-profile-$id'>$name $lastname</a>");
+					echo("</td><td>");
+					echo(htmlentities($data['headline']));
+					echo("</td><td>");
+					echo("
+						<button class='btn btn-sm glass-btn-danger' data-bs-toggle='modal' data-bs-target='#edit-modal-$id'>
+							<span class='fas fa-edit' aria-hidden='true'></span>
+						</button> 
+						<button class='btn btn-sm glass-btn-danger' data-bs-toggle='modal' data-bs-target='#delete-modal-$id'>
+							<span class='fas fa-trash' aria-hidden='true'></span>
+						</button>
+						</td>
+						</tr>");
+					echo "
+					<script type='application/javascript'>
+						edit_fields_id.push($id);
+					</script>
+					";
+					include "html/view_modal.php";
+					include "html/delete_modal.php";
 				}
 				echo('</table>');
  			}
@@ -147,7 +186,6 @@ href="https://code.jquery.com/ui/1.12.1/themes/ui-lightness/jquery-ui.css">
 	href="css/stylesheet.css">
 <!-- Recursos -->
 <?php require_once "html/add_modal.php";?>
-<?php require_once "html/view_modal.php";?>
 <?php require_once "html/edit_modal.php";?>
 <?php require_once "html/delete_modal.php";?>
 <script type="text/javascript" src="js/edu.js"></script>

@@ -13,11 +13,12 @@ numero de contacto: +507 6542-0323
 session_start();
 require_once "pdo.php";
 //Log Protection
-if (! isset($_SESSION['user_id']) && ! isset($_SESSION['name'])) {
+if (!isset($_SESSION['user_id'])&&
+	!isset($_SESSION['name'])) {
 	die('<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><h1 class="container" style="color: red; text-align: center;">UNAUTHORIZED</h1>');
 }
 //profile_id protection
-if (! isset($_GET['profile_id'])) {
+if (!isset($_GET['profile_id'])) {
 	$_SESSION['error'] = "Bad id for user";
 	header("Location: index.php");
 	return;
@@ -72,6 +73,17 @@ if (isset($_GET['profile_id'])&&
 	 *** ****** **       *****  *****       *********************
 	 ***       ** ******* ****  **** ******* ********************
 	 ************************************************************/
+		//Database Error Validaton
+		$sql = "SELECT * FROM profile WHERE profile_id = :pid";
+		$stmt = $pdo->prepare($sql);
+		$stmt->execute(array(
+		':pid' => $_GET['profile_id']));
+		$row = $stmt->fetch(PDO::FETCH_ASSOC);
+		if ($row == false) {
+			$_SESSION['error'] = "Invalid profile";
+			//header("Location: index.php");
+			return;
+		}
 		//data modification
 		$sql = "UPDATE profile SET first_name = :fn, last_name = :ln, email = :em, headline = :he, summary = :su
 		WHERE profile_id = :pid";
@@ -135,25 +147,6 @@ if (isset($_GET['profile_id'])&&
 		header("Location: ../index.php");
 		return;
 	}
-}
-//Cancel
-if (isset($_POST['cancel'])) {
-	//header("Location: index.php");
-	return;
-}
-
-
-
-//Database Error Validaton
-$sql = "SELECT * FROM profile WHERE profile_id = :pid";
-$stmt = $pdo->prepare($sql);
-$stmt->execute(array(
-':pid' => $_GET['profile_id']));
-$row = $stmt->fetch(PDO::FETCH_ASSOC);
-if ($row == false) {
-	$_SESSION['error'] = "Invalid profile";
-	//header("Location: index.php");
-	return;
 }
 //Second-time data
 $sql2 = "SELECT * FROM position WHERE profile_id = :pid";

@@ -130,13 +130,25 @@ href="https://code.jquery.com/ui/1.12.1/themes/ui-lightness/jquery-ui.css">
 <!-- <img class="position-absolute top-50 start-50 translate-middle z-n1" src="images/sin.png"> -->
 <!-- alternative -->
 <main class="form-signin w-100 m-auto z-0">
-	<form class="card glass rounded-3 p-0 form-login" method="post">
+	<form class="card glass login rounded-3 p-0 form-login" method="post">
 	<!-- <img class="mb-4" src="/docs/5.3/assets/brand/bootstrap-logo.svg" alt="" width="72" height="57"> -->
 	<div class="card-header">
 		<h1 class="h3">Resume Registry</h1>
 		<p>Please Login</p>
 	</div>
 <div class="card-body glass border rounded-0">
+		<?php
+		/*
+		>Seccion para el output de los errores.
+		*/
+		if (isset($_SESSION['error'])) {
+		echo("<div class='p-3 text-danger-emphasis bg-danger-subtle rounded-3'>".$_SESSION['error']."</div>");
+		unset($_SESSION['error']);
+		} elseif (isset($_SESSION['succes'])) {
+		echo("<div style='color: green;' class='text-center'>".$_SESSION['succes']."</div>");
+		unset($_SESSION['succes']);
+		}
+		?>
 		<div class="form-floating mb-1">
 		  <input type="text" class="form-control" id="e-mail" name="email" placeholder="name@example.com">
 		  <label for="e-mail">Email address</label>
@@ -146,21 +158,6 @@ href="https://code.jquery.com/ui/1.12.1/themes/ui-lightness/jquery-ui.css">
 		  <input type="password" class="form-control" id="id_1723" name="password" placeholder="Password">
 		  <label for="id_1723">Password</label>
 		</div>
-<?php
-/*
-
-
->Seccion para el outout de los errores.
-
-*/
-if (isset($_SESSION['error'])) {
-echo("<div class='p-3 text-danger-emphasis bg-danger-subtle rounded-3'>".$_SESSION['error']."</div>");
-unset($_SESSION['error']);
-} elseif (isset($_SESSION['succes'])) {
-echo("<div style='color: green;' class='text-center'>".$_SESSION['succes']."</div>");
-unset($_SESSION['succes']);
-}
-?>
 		<div class="form-check text-start my-3">
 		  <input class="form-check-input" type="checkbox" value="remember-me" id="remember" name="remember" disabled>
 		  <label class="form-check-label" for="remember">
