@@ -150,6 +150,9 @@ href="https://code.jquery.com/ui/1.12.1/themes/ui-lightness/jquery-ui.css">
 					$id=htmlentities($data['profile_id']);
 					$name=htmlentities($data['first_name']);
 					$lastname=htmlentities($data['last_name']);
+					$email=htmlentities($data['email']);
+					$headline=htmlentities($data['headline']);
+					$summary=htmlentities($data['summary']);
 					echo("<tr><td>");
 					echo("<a href='#' data-bs-toggle='modal' data-bs-target='#view-profile-$id'>$name $lastname</a>");
 					echo("</td><td>");
@@ -171,6 +174,7 @@ href="https://code.jquery.com/ui/1.12.1/themes/ui-lightness/jquery-ui.css">
 					";
 					include "html/view_modal.php";
 					include "html/delete_modal.php";
+					include "html/edit_modal.php";
 				}
 				echo('</table>');
  			}
@@ -186,8 +190,6 @@ href="https://code.jquery.com/ui/1.12.1/themes/ui-lightness/jquery-ui.css">
 	href="css/stylesheet.css">
 <!-- Recursos -->
 <?php require_once "html/add_modal.php";?>
-<?php require_once "html/edit_modal.php";?>
-<?php require_once "html/delete_modal.php";?>
 <script type="text/javascript" src="js/edu.js"></script>
 <script type="text/javascript" src="js/position.js"></script>
 </body>

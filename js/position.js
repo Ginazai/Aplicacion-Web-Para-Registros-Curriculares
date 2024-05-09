@@ -1,12 +1,14 @@
 $(document).ready(function () {
 	i=0;
 	function createPositionEdit(parent_elem) {
-		if($(parent_elem).children().length>=9){alert("Maximun amount of position rows reached");}
+		var elem_len = $(parent_elem).children().length;
+		if(elem_len>=10){alert("Maximun amount of position rows reached");}
+		if(elem_len>0){i=elem_len-1;}
 		$(parent_elem).append('\
 			<div class="position_field row g-2">\
 			<div class="col-12 mt-3">\
 				<div class="form-floating">\
-					<input id="year'+ i +'" class="form-control mx-0" maxlength="4" type="number" name="Edit_years['+ i +']" placeholder="Year">\
+					<input id="year'+ i +'" class="form-control mx-0" maxlength="4" type="number" name="Edit_years[year'+ i +']" placeholder="Year">\
 					<label for="year'+ i +'">Year</label>\
 				</div>\
 			</div>\

@@ -1,7 +1,9 @@
 $(document).ready(function() {
 	j=0;
 	function createEduEdit(parent_div) {
-		if($(parent_div).children().length>=9){alert("Maximun amount of position rows reached");}
+		var parent_len = $(parent_div).children().length;
+		if(parent_len>=10){alert("Maximun amount of education rows reached");}
+		if(parent_len>0){j=parent_len-1;}
 		$(parent_div).append('\
 		<div class="edu_field row">\
 			<div class="row g-2">\
