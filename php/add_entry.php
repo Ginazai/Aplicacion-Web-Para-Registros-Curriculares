@@ -140,7 +140,7 @@ if (! isset($_SESSION['user_id']) && ! isset($_SESSION['name'])) {
 			header("Location: ../index.php");
 			return;}
 	}
-  $_SESSION['success'] = "Record successfully added!";
+  $_SESSION['success'] = "Record successfully added";
   header("Location: ../index.php");
   return;
 }

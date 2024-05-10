@@ -142,23 +142,21 @@ href="https://code.jquery.com/ui/1.12.1/themes/ui-lightness/jquery-ui.css">
 		>Seccion para el output de los errores.
 		*/
 		if (isset($_SESSION['error'])) {
-		echo("<div class='p-3 text-danger-emphasis bg-danger-subtle rounded-3'>".$_SESSION['error']."</div>");
-		unset($_SESSION['error']);
+		echo("<div class='p-3 session-error glass-bg-danger glass-text-success rounded-3 my-2'>".$_SESSION['error']."</div>");
 		} elseif (isset($_SESSION['succes'])) {
-		echo("<div style='color: green;' class='text-center'>".$_SESSION['succes']."</div>");
-		unset($_SESSION['succes']);
+		echo("<div class='session-success glass-bg-success glass-text-danger my-2'>".$_SESSION['success']."</div>");
 		}
 		?>
-		<div class="form-floating mb-1">
+		<div class="form-floating my-2">
 		  <input type="text" class="form-control" id="e-mail" name="email" placeholder="name@example.com">
 		  <label for="e-mail">Email address</label>
 		</div>
 
-		<div class="form-floating">
+		<div class="form-floating my-2">
 		  <input type="password" class="form-control" id="id_1723" name="password" placeholder="Password">
 		  <label for="id_1723">Password</label>
 		</div>
-		<div class="form-check text-start my-3">
+		<div class="form-check text-start my-2">
 		  <input class="form-check-input" type="checkbox" value="remember-me" id="remember" name="remember" disabled>
 		  <label class="form-check-label" for="remember">
 		    Remember me
@@ -188,5 +186,6 @@ href="https://code.jquery.com/ui/1.12.1/themes/ui-lightness/jquery-ui.css">
 <link rel="stylesheet"
 	type="text/css"
 	href="css/stylesheet.css">
+<script type="text/javascript" src="js/ajax-unset.js"></script>
 </body>
 </html>

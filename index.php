@@ -122,12 +122,12 @@ href="https://code.jquery.com/ui/1.12.1/themes/ui-lightness/jquery-ui.css">
 
 	 		*/
 	 		if (isset($_SESSION['error'])) {
-	 			echo('<div class="p-3 my-3 text-danger-emphasis bg-danger-subtle rounded-3">'.$_SESSION['error'].'</div>');
-	 			unset($_SESSION['error']);
-	 		}
+	 			$error_time = time();
+	 			echo('<div class="session-error p-3 my-3 glass-bg-danger glass-text-success rounded-3"><b>Error:</b> '.$_SESSION['error'].'</div>');
+	 		} 
 	 		if (isset($_SESSION['success'])) {
-	 			echo('<div class="p-3 my-3 text-success-emphasis bg-success-subtle rounded-3">'.$_SESSION['success'].'</div>');
-	 			unset($_SESSION['success']);
+	 			$success_time = time();
+	 			echo('<div class="session-success p-3 my-3 glass-bg-success glass-text-danger rounded-3">'.$_SESSION['success'].'</div>');
 	 		}
 	 		/*
 	
@@ -201,5 +201,6 @@ href="https://code.jquery.com/ui/1.12.1/themes/ui-lightness/jquery-ui.css">
 <?php require_once "html/add_modal.php";?>
 <script type="text/javascript" src="js/edu.js"></script>
 <script type="text/javascript" src="js/position.js"></script>
+<script type="text/javascript" src="js/ajax-unset.js"></script>
 </body>
 </html>

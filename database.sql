@@ -1,4 +1,3 @@
-*----------First Part----------*
 CREATE TABLE users (
    user_id INTEGER NOT NULL AUTO_INCREMENT,
    name VARCHAR(128),
@@ -9,7 +8,6 @@ CREATE TABLE users (
 
 ALTER TABLE users ADD INDEX(email);
 ALTER TABLE users ADD INDEX(password);
-*-------------------------------*
 CREATE TABLE Profile (
   profile_id INTEGER NOT NULL AUTO_INCREMENT,
   user_id INTEGER NOT NULL,
@@ -26,12 +24,9 @@ CREATE TABLE Profile (
         REFERENCES users (user_id)
         ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
-*--------------Second Part-------------*
 CREATE TABLE Position (
   position_id INTEGER NOT NULL AUTO_INCREMENT,
   profile_id INTEGER,
-  rank INTEGER,
   year INTEGER,
   description TEXT,
 
@@ -42,19 +37,15 @@ CREATE TABLE Position (
         REFERENCES Profile (profile_id)
         ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
-*-----------------Third Part--------------*
 CREATE TABLE Institution (
   institution_id INTEGER NOT NULL AUTO_INCREMENT,
   name VARCHAR(255),
   PRIMARY KEY(institution_id),
   UNIQUE(name)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-*--------------------------------------------*
 CREATE TABLE Education (
   profile_id INTEGER,
   institution_id INTEGER,
-  rank INTEGER,
   year INTEGER,
 
   CONSTRAINT education_ibfk_1
