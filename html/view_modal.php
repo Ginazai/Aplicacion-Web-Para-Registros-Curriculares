@@ -15,11 +15,13 @@
 				<li class="list-group-item list-group-item-secondary">Position:
 					<ol id="position-<?= $id ?>" class="list-group list-group-numbered">
 						<script type="application/javascript">
-							position_data.map((elem) => {
-								if(elem.profile_id == "<?= $id ?>"){
-									$('#position-'+elem.profile_id).append
-									("<li class='list-group-item border border-0'><b>"+ elem.year + ":</b> " + elem.description +"</li>");
-								}
+							$(document).ready(function(){
+								position_data.map((elem) => {
+									if(elem.profile_id == "<?= $id ?>"){
+										$('#position-'+elem.profile_id).append
+										("<li class='list-group-item border border-0'><b>"+ elem.year + ":</b> " + elem.description +"</li>");
+									}
+								});
 							});
 						</script>
 					</ol>
@@ -27,11 +29,13 @@
 				<li class="list-group-item list-group-item-secondary rounded-0 border-bottom-0">Education:
 					<ol id="edu-<?= $id ?>" class="list-group list-group-numbered">
 						<script type="application/javascript">
-							edu_data.map((elem) => {
-								if(elem.profile_id == "<?= $id ?>"){
-									$('#edu-'+elem.profile_id).append
-									("<li class='list-group-item border border-0'><b>"+ elem.year + ":</b> " + elem.name +"</li>");
-								}
+							$(document).ready(function(){
+								edu_data.map((elem) => {
+									if(elem.profile_id == "<?= $id ?>"){
+										$('#edu-'+elem.profile_id).append
+										("<li class='list-group-item border border-0'><b>"+ elem.year + ":</b> " + elem.name +"</li>");
+									}
+								});
 							});
 						</script>
 					</ol>

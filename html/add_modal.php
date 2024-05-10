@@ -8,6 +8,7 @@
       </div>
       <div class="modal-body glass border rounded-0">
 				<form id="form-add" name="form-add" action="php/add_entry.php" class="form-floating border-0" role="form" method="post" style="background-color: transparent !important;">
+					
 					<div class="row g-2">
 						<div class="col-md">
 							<div class="form-floating">

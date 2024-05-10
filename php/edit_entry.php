@@ -61,6 +61,57 @@ if (isset($_GET['profile_id'])&&
 			//header("Location: ../index.php");
 			return;
 		}
+		var_dump($_POST['Edit_edu_years']);
+		echo "<br>";
+		//var_dump($_POST['Edit_edu_inst']);
+		if(isset($_POST['Edit_edu_years'])&&
+			isset($_POST['Edit_edu_inst'])){
+			echo "inside if";
+			$clear_data=$pdo->prepare("DELETE FROM education WHERE profile_id = :pid");
+			$clear_data->execute([':pid'=>$_GET['profile_id']]);
+			$edu_years=$_POST['Edit_edu_years'];
+			$edu_inst=$_POST['Edit_edu_inst'];
+			$edu_years_keys=array_keys($edu_years);
+			$edu_inst_keys=array_keys($edu_inst);
+
+			var_dump($edu_years);
+			echo "<br>";
+			var_dump($edu_inst);
+			if(count($edu_years)==count($edu_inst)){
+
+				for($i=0;$i<count($edu_years);$i++){
+					$curr_year=$edu_years[$edu_years_keys[$i]];
+					$curr_inst=$edu_inst[$edu_inst_keys[$i]];
+					if($curr_year!=''&&$curr_inst!=''){
+						$get_inst=$pdo->prepare("SELECT * FROM institution WHERE name = :name");
+						$get_inst->execute([':name' => $curr_inst]);
+						$ret_inst=$get_inst->fetchAll();
+						if($ret_inst&&$get_inst->rowCount()>0){
+							$institution_id=$ret_inst[0]['institution_id'];
+							$insert_data=$pdo->prepare("INSERT INTO education (profile_id,institution_id,year)
+														VALUES (:pid,:inst_id,:year)");
+							$insert_data->execute([
+								':pid' => $_GET['profile_id'],
+								':inst_id' => $institution_id,
+								':year' => $curr_year
+							]);
+						} else {
+							$_SESSION['error'] = "Failed added institution (institution not found)";
+							//header("Location: ../index.php");
+							return;
+						}
+					} else {
+						$_SESSION['error'] = "All education fields are required";
+						//header("Location: ../index.php");
+						return;
+					}
+				}
+			} else {
+				$_SESSION['error'] = "There was an error processing education information. Check the fields and try again";
+				//header("Location: ../index.php");
+				return;
+			}
+		}
 		$_SESSION['succes'] = "Record successfully modified!";
 		//header("Location: ../index.php");
 		return;

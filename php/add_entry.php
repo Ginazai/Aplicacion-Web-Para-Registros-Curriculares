@@ -81,18 +81,15 @@ if (! isset($_SESSION['user_id']) && ! isset($_SESSION['name'])) {
   		for($i=0;$i<count($edu_years);$i++){
   			$curr_year = $edu_years[$edu_years_keys[$i]];
   			$curr_inst = $edu_inst[$edu_inst_keys[$i]];
-  			echo $curr_inst . "<br>"; 
   			if($curr_year!=''&&$curr_inst!=''){
   				$check_inst = $pdo->prepare("SELECT * FROM institution WHERE name = :inst");
   				$check_inst->execute([':inst'=>$curr_inst]);
   				$data = $check_inst->fetchAll();
   				if($data&&$check_inst->rowCount()>0){
-  					echo "inside if for insertion<br>";
   					$inst_id = $data[0]['institution_id'];
   					$institution = $data[0]['name'];
-
   					$insert_institution = $pdo->prepare("INSERT INTO education (profile_id,institution_id,year) 
-  																							VALUES (:pid,:inst_id,:year)");
+  														VALUES (:pid,:inst_id,:year)");
   					$insert_institution->execute([
   						':pid' => $profile_id,
   						':inst_id' => $inst_id,

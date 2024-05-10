@@ -7,8 +7,7 @@
 	        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 	      </div>
 	  <div class="modal-body glass border rounded-0">
-			<form class="form-control border-0" id="modal-edit-<?= $id ?>" name="modal-edit-<?= $id ?>" action="php/edit_entry.php?profile_id=<?= $id ?>" role="form" method="post"  style="background-color:transparent;">
-				<div>
+			<form class="form-floating border-0" id="modal-edit-<?= $id ?>" name="modal-edit-<?= $id ?>" action="php/edit_entry.php?profile_id=<?= $id ?>" role="form" method="post"  style="background-color:transparent;">
 	      <div class="row g-2">
 	      	<div class="col-md">
 		        <div class="form-floating">
@@ -46,43 +45,46 @@
 
 	        <div class="col-sm-12" id="edu_fields_edit_<?= $id ?>">
 	        	<script type="application/javascript">
-	        		var i=0;
-							edu_data.map((elem) => {
-								var id=elem.profile_id;
-								if(id == "<?= $id ?>"){
-									var content = `
-									<div class='edu_field row'>
-										<div class='row g-2'>
-											<div class='col-md form-floating'>
-												<input class='form-control' id='edu_year_${i}' maxlength='4' type='text' name='Edit_edu_years[edu_year_${i}]' value='${elem.year}' placeholder='Year'>
-												<label for='edu_year_${i}' class='form-label'>Year</label>
+	        		$(document).ready(function() {
+	        			var i=0;
+								edu_data.map((elem) => {
+									var id=elem.profile_id;
+									if(id == "<?= $id ?>"){
+										var content = `
+										<div class='edu_field row'>
+											<div class='row g-2'>
+												<div class='col-md form-floating'>
+													<input class='form-control' id='edu_year_${i}' maxlength='4' type='text' name='Edit_edu_years[edu_year${i}]' value='${elem.year}' placeholder='Year'>
+													<label for='edu_year${i}' class='form-label'>Year</label>
+												</div>
+												<div id='edu_school_${i}' class='col-md form-floating'>
+													<input class='school form-control' type='text' name='Edit_edu_inst[edu_school${i}]' value='${elem.name}' placeholder='Institution'>
+													<label for='edu_school${i}' class='form-label'>Institution</label>
+												</div>
 											</div>
-											<div id='edu_school_${i}' class='col-md form-floating'>
-												<input class='school form-control' type='text' name='Edit_edu_inst[edu_school_${i}]' value='${elem.name}' placeholder='Institution'>
-												<label for='edu_school_${i}' class='form-label'>Institution</label>
+											<div class='col-12' width='100%'>
+												<button class='my-2 float-end remove-edu-field btn btn-sm btn glass-btn-danger' type='button'>
+													<span class='fas fa-trash'></span> Eliminar
+												</button>
 											</div>
-										</div>
-										<div class='col-12' width='100%'>
-											<button class='my-2 float-end remove-edu-field btn btn-sm btn glass-btn-danger' type='button'>
-												<span class='fas fa-trash'></span> Eliminar
-											</button>
-										</div>
-									</div>`;
-								$(`#edu_fields_edit_${id}`).append(content);
-								i+=1;
-								}
+										</div>`;
+									$(`#edu_fields_edit_${id}`).append(content);
+									i+=1;
+									}
+								});
 							});
-						</script>
+	        	</script>
 					</div>
 
 		    <div class="col-sm-2 my-3">
 		      <label for="editPost_<?= $id ?>" class="form-label">Position</label>
-		      <input class="form-control btn glass-btn-success btn-sm" id="editPost_<?= $id ?>" type="button" name="addPost" value="+">
+		      <button class="form-control btn glass-btn-success btn-sm" id="editPost_<?= $id ?>" type="button" name="addPost">+</button>
 		    </div>
 
 			  <div class="col-sm-12" id="position_fields_edit_<?= $id ?>">
 			  	<script type="application/javascript">
-	        		var i=0;
+			  		$(document).ready(function() {
+			  			var i=0;
 							position_data.map((elem) => {
 								var id=elem.profile_id;
 								if(id == "<?= $id ?>"){
@@ -106,9 +108,9 @@
 								i+=1;
 								}
 							});
-						</script>
+						});
+			  	</script>
 				</div>
-			</div>
 		</form>
 </div>
 <div class="modal-footer float-left">

@@ -172,11 +172,20 @@ href="https://code.jquery.com/ui/1.12.1/themes/ui-lightness/jquery-ui.css">
 						edit_fields_id.push($id);
 					</script>
 					";
-					include "html/view_modal.php";
-					include "html/delete_modal.php";
-					include "html/edit_modal.php";
+					
 				}
 				echo('</table>');
+				foreach($comprobation as $data){
+					$id=htmlentities($data['profile_id']);
+					$name=htmlentities($data['first_name']);
+					$lastname=htmlentities($data['last_name']);
+					$email=htmlentities($data['email']);
+					$headline=htmlentities($data['headline']);
+					$summary=htmlentities($data['summary']);
+					include "html/view_modal.php";
+					include "html/edit_modal.php";
+					include "html/delete_modal.php";
+				}
  			}
 			else {
 				echo('<div class="text-center">No rows found</div>');
