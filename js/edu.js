@@ -61,7 +61,7 @@ $(document).ready(function() {
 		j+=1;
 	}
 	const edu_fields = edit_fields_id.map((id) => {
-		$("#editEdu_" + id).on("click",function(){createEduEdit("#edu_fields_edit_"+id);});
+		$("#editEdu_"+id).on("click",function(){createEduEdit("#edu_fields_edit_"+id);});
 		$("#edu_fields_edit_"+id).on("click", ".remove-edu-field", function(e) {
 			e.preventDefault();
 			$(this).parent().parent().remove();

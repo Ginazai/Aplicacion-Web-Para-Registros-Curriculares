@@ -26,6 +26,7 @@ $comprobation = $str_stmt->fetchAll();
 
 $get_positions = $pdo->prepare("SELECT * FROM position");
 $get_positions->execute();
+$position_data=array();
 while($row=$get_positions->fetch(PDO::FETCH_ASSOC)){$position_data[]=$row;}
 $position_data = json_encode($position_data, JSON_PRETTY_PRINT);
 
@@ -33,6 +34,7 @@ $get_edu = $pdo->prepare("SELECT * FROM education
 							JOIN institution
 							ON education.institution_id = institution.institution_id");
 $get_edu->execute();
+$edu_data=array();
 while($row=$get_edu->fetch(PDO::FETCH_ASSOC)){$edu_data[]=$row;}
 $edu_data = json_encode($edu_data, JSON_PRETTY_PRINT);
 ?>

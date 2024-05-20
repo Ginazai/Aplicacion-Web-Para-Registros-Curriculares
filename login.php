@@ -6,7 +6,6 @@ Ing. en sistemas informaticos
 correo electronico: rafaeldc1300@gmail.com
 numero de contacto: +507 6542-0323
 
-
 >Inicio del MC (modelo/controlador): Se solicita la variable $pdo la cual 
 proviene del archivo "pdo.php" con el fin de conectarse a la base de datos
 
@@ -14,14 +13,11 @@ proviene del archivo "pdo.php" con el fin de conectarse a la base de datos
 session_start();
 require_once "php/pdo.php";
 /*
-
 >Verificacion de campos: se verifica el input del form del usuario, el email y 
 la 
-
 */
 if (isset($_POST['log']) && isset($_POST['email']) && isset($_POST['password'])) {
 	/*
-
 	>En esta seccion, se incluye un "salt" a la contrasenia para hacerla mas segura.
 	Resulta evidente pues, que al momento de realizar un registro, tambien se incluira
 	este mismo "salt" a la contrasenia provista por el usuario para mantener uniformidad 
@@ -29,14 +25,12 @@ if (isset($_POST['log']) && isset($_POST['email']) && isset($_POST['password']))
 
 	Nota: de no hacerse exactamente de la misma manera en ambos, el registro y la autenticacion,
 	el proceso fallara.
-
 	*/
 	$str_salt = 'XyZzy12*_';
 	$str_email_check = filter_var($_POST['email'], FILTER_VALIDATE_EMAIL);
 	$str_check = $_POST['password'];
 	$str_check = hash('sha256', $str_salt.$_POST['password']);
 	/*
-
 	>Verificacion de campos:
 
 	Verificamos la longitud del input del usuario para confirmar que no
@@ -44,7 +38,6 @@ if (isset($_POST['log']) && isset($_POST['email']) && isset($_POST['password']))
 
 	Posteriormente verificamos si el formato de correo electronico 
 	provisto es valido mediante la funcion de php "filter_var".
-
 	*/
 	if (strlen($_POST['email']) < 1 || strlen($_POST['password']) < 1) {
 		$_SESSION['error'] = "All fields are required";
@@ -56,13 +49,11 @@ if (isset($_POST['log']) && isset($_POST['email']) && isset($_POST['password']))
 		header("Location: login.php");
 		return;
 	}
-	/*
-
-	>Verificacion de datos del usuario en la base de datos: se compara
-	la informacion suministrada con la informacion existente en nuestra
-	base de datos para proveer la autenticacion.
-
-	*/
+		/*
+		>Verificacion de datos del usuario en la base de datos: se compara
+		la informacion suministrada con la informacion existente en nuestra
+		base de datos para proveer la autenticacion.
+		*/
 		$str_sql = "SELECT user_id, name FROM users WHERE email = :em AND password = :pw";
 		$str_stmt = $pdo->prepare($str_sql);
 		$str_stmt->execute(array(
@@ -70,29 +61,25 @@ if (isset($_POST['log']) && isset($_POST['email']) && isset($_POST['password']))
 			':em' => $str_email_check));
 		$row = $str_stmt->fetch(PDO::FETCH_ASSOC);
 		/*
-
 		>En caso de ser exitosa la autenticacion, se asigna el nombre
 		del usuario a la cookie de sesion para mantener almacenada 
 		esta informacion.
-
 		*/
 		if ($row !== false) {
 			$_SESSION['name'] = $row['name'];
 			$_SESSION['user_id'] = $row['user_id'];
 			header("Location: index.php");
 			return;
-		} 
-		/*
-
-		>De no encajar con los registros, el usuario recibe una
-		respuesta de error.
-
-		*/
-		if ($row == false) {
+		} else {
+			/*
+			>De no encajar con los registros, el usuario recibe una
+			respuesta de error.
+			*/
 			$_SESSION['error'] = "Invalid credentials";
 			header("Location: login.php");
 			return;
 		}
+
 	}
 ?>
 <!DOCTYPE html>
@@ -128,12 +115,11 @@ href="https://code.jquery.com/ui/1.12.1/themes/ui-lightness/jquery-ui.css">
 </head>
 <body class="d-flex align-items-center bg-background">
 <!-- <img class="position-absolute top-50 start-50 translate-middle z-n1" src="images/sin.png"> -->
-<!-- alternative -->
 <main class="form-signin w-100 m-auto z-0">
 	<form class="card glass login rounded-3 p-0 form-login" method="post">
 	<!-- <img class="mb-4" src="/docs/5.3/assets/brand/bootstrap-logo.svg" alt="" width="72" height="57"> -->
 	<div class="card-header">
-		<h1 class="h3">Resume Registry</h1>
+		<h1 class="h3 glass-text-danger">Resume Registry</h1>
 		<p>Please Login</p>
 	</div>
 <div class="card-body glass border rounded-0">
@@ -143,9 +129,7 @@ href="https://code.jquery.com/ui/1.12.1/themes/ui-lightness/jquery-ui.css">
 		*/
 		if (isset($_SESSION['error'])) {
 		echo("<div class='p-3 session-error glass-bg-danger glass-text-success rounded-3 my-2'>".$_SESSION['error']."</div>");
-		} elseif (isset($_SESSION['succes'])) {
-		echo("<div class='session-success glass-bg-success glass-text-danger my-2'>".$_SESSION['success']."</div>");
-		}
+		} 
 		?>
 		<div class="form-floating my-2">
 		  <input type="text" class="form-control" id="e-mail" name="email" placeholder="name@example.com">
@@ -156,24 +140,22 @@ href="https://code.jquery.com/ui/1.12.1/themes/ui-lightness/jquery-ui.css">
 		  <input type="password" class="form-control" id="id_1723" name="password" placeholder="Password">
 		  <label for="id_1723">Password</label>
 		</div>
-		<div class="form-check text-start my-2">
-		  <input class="form-check-input" type="checkbox" value="remember-me" id="remember" name="remember" disabled>
-		  <label class="form-check-label" for="remember">
-		    Remember me
-		  </label>
+	<!-- 		<div class="form-check text-start my-2">
+			  <input class="form-check-input" type="checkbox" value="remember-me" id="remember" name="remember" disabled>
+			  <label class="form-check-label" for="remember">
+			    Remember me
+			  </label>
+			</div> -->
 		</div>
-</div>
 
-<div class="card-footer" >
-	<div class="row me-0">
-			<input class="btn glass-btn-success py-2 col-5 btn-sm " type="submit" onclick="return doValidate();" name="log" value="Log In">
+		<div class="card-footer" >
+			<div class="row me-0">
+					<input class="btn glass-btn-success py-2 col-5 btn-sm " type="submit" name="log" value="Log In">
+				</div>
 		</div>
-</div>
 
 	</form>
 </main>
-<!-- alternative -->
-
 <!-- Resources -->
 <script
 	src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
