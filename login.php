@@ -150,8 +150,9 @@ href="https://code.jquery.com/ui/1.12.1/themes/ui-lightness/jquery-ui.css">
 
 		<div class="card-footer" >
 			<div class="row me-0">
-					<input class="btn glass-btn-success py-2 col-5 btn-sm " type="submit" name="log" value="Log In">
-				</div>
+				<input class="btn glass-btn-success py-2 col-3 btn-sm " type="submit" name="log" value="Log In">
+				<input class="btn glass-btn-danger py-2 col-3 btn-sm " type="button" name="register" value="Register">
+			</div>
 		</div>
 
 	</form>

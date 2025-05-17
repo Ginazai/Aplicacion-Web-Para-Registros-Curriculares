@@ -1,12 +1,5 @@
 <?php
 /*
->Desarrollado por: 
-Rafael Caballero
-Ing. en sistemas informaticos
-correo electronico: rafaeldc1300@gmail.com
-numero de contacto: +507 6542-0323
-
-
 >Inicio del MC (modelo/controlador): Se solicita la variable $pdo la cual 
 proviene del archivo "pdo.php" con el fin de conectarse a la base de datos
 
