@@ -1,5 +1,5 @@
 <h1>Aplicacion de Registro Curricular</h1>
-<p>Esta aplicacion consiste en un CRUD (create, read, update and delete) sencillo con la finalidad de guardar informacion academica y profesional de perfiles estudiantiles. Aplicaciones de este tipo son parte de sistemas mas extensos que se encargan de almacenar la informacion y asociar propiamente a los estudiantes universitarios con los trabajos que mejor encaje con su perfil. Evidentemente, esta es unicamente una parte de dicho tipo de sistema con el objetivo de demostrar el funcionamiento de un CRUD en <code>PHP</code>.</p>
+<p>Esta aplicacion consiste en un CRUD (create, read, update and delete) sencillo con la finalidad de guardar informacion academica y profesional de perfiles estudiantiles. Aplicaciones de este tipo son parte de sistemas mas extensos que se encargan de almacenar la informacion y asociar propiamente a los estudiantes universitarios con los trabajos que mejor encaje con su perfil. Evidentemente, esta es unicamente una parte de dicho tipo de sistema con el objetivo de demostrar el funcionamiento de un CRUD en <code>php</code>.</p>
 <h2>Tecnologias utilizadas</h2>
 <ul>
 	<li>PHP 8.2.12</li>
